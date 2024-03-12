@@ -1,0 +1,8 @@
+To automatically update R:
+
+install.packages("installr)
+
+library(installr)
+
+updateR() or unistall.R()
+
