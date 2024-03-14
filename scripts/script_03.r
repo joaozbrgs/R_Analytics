@@ -37,17 +37,17 @@ names(df1) <- c('date', 'quantity')
 
 ## Exploratory
 
-# print(sd(df.main$year_salary))
-# print(View(df.main[5:9]))
-# print(colSums(is.na(df.main[2:4])))
+print(sd(df.main$year_salary))
+print(View(df.main[5:9]))
+print(colSums(is.na(df.main[2:4])))
 
-# print(str(df.main$gender))
-# print(table(df.main$gender))
-# print(prop.table(table(df.main$gender)) * 100)
+print(str(df.main$gender))
+print(table(df.main$gender))
+print(prop.table(table(df.main$gender)) * 100)
 
 
-# hist(df.main$year_salary)
-# boxplot(df.main$year_salary)
+hist(df.main$year_salary)
+boxplot(df.main$year_salary)
 print(
     ggplot(df1, aes(x = date, y = quantity, group = 1)) +
         geom_line() +

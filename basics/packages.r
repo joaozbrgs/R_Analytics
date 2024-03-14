@@ -14,5 +14,5 @@
 
 # install.packages("rmarkdown")           # Used for '.rmd' tasks
 # install.packages("tinytex")             # Used for '.rmd' tasks
-    # library(tinytex)
-    # tinytex::install_tinytex()
+#     library(tinytex)
+#     tinytex::install_tinytex()

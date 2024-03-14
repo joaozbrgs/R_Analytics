@@ -25,16 +25,15 @@ df1 <- df.main %>%
 
 #Renaming the columns
 names(df1) <- c('gender', 'sum_of_salary')
-
 # print(View(df1))
 
 # Ploting some graphs PS.: This graph is mad crazy, need to understand more of this syntax to create a better one
-# print(
-#     ggplot(df1, aes(x = reorder(gender, sum_of_salary), y = sum_of_salary)) +
-#         geom_bar(stat = 'identity') +
-#         coord_flip() +
-#         labs(x = 'Salary', y = 'Gender')
-# )
+print(
+    ggplot(df1, aes(x = reorder(gender, sum_of_salary), y = sum_of_salary)) +
+        geom_bar(stat = 'identity') +
+        coord_flip() +
+        labs(x = 'Salary', y = 'Gender')
+)
 
 # 2 - What is the total earn by country?
 # Create a dataframe with top 15 countries

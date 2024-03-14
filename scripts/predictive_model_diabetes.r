@@ -15,46 +15,46 @@ df.main <- read.csv(
     dec = '.'                           # Defining the float separator
 )
 
-# # Explore DataFrame - Treationg the dataset
-# print(dim(df.main))
-# print(str(df.main))
-# print(View(df.main))
+# Explore DataFrame - Treationg the dataset
+print(dim(df.main))
+print(str(df.main))
+print(View(df.main))
 
-# # Check for NULL values
-# print(colSums(is.na(df.main)))
+# Check for NULL values
+print(colSums(is.na(df.main)))
 
-# # Check proportion per category
-# print(table(df.main$Outcome))
+# Check proportion per category
+print(table(df.main$Outcome))
 
 # Convert 'Outcome' from 'int' to 'factor'
 df.main$Outcome <- as.factor(df.main$Outcome)
 
 # Now that the dataframe is ready:
-# print(str(df.main))
-# print(summary(df.main))
+print(str(df.main))
+print(summary(df.main))
 
-# # Identifying Outliers and anomalies
-# boxplot(df.main)
-# boxplot(df.main$Insulin)
-# hist(df.main$Insulin)
+# Identifying Outliers and anomalies
+boxplot(df.main)
+boxplot(df.main$Insulin)
+hist(df.main$Insulin)
 
 # # Removing Outliers
 df.filtered <- df.main %>% 
     filter(Insulin <= 250)
-# boxplot(df.filtered$Insulin)
-# hist(df.filtered$Insulin)
+boxplot(df.filtered$Insulin)
+hist(df.filtered$Insulin)
 
-# # Finding Outliers in the filtered dataframe
-# boxplot(df.filtered)
+# Finding Outliers in the filtered dataframe
+boxplot(df.filtered)
 
-# # Studying Each variable for distribution
-# hist(df.filtered$Pregnancies)
-# hist(df.filtered$BMI)
-# hist(df.filtered$Age)
+# Studying Each variable for distribution
+hist(df.filtered$Pregnancies)
+hist(df.filtered$BMI)
+hist(df.filtered$Age)
 
-# # Studying Behaviour of variable 'Insulin'
-# print(summary(df.filtered$Insulin))
-# print(sd(df.filtered$Insulin))
+# Studying Behaviour of variable 'Insulin'
+print(summary(df.filtered$Insulin))
+print(sd(df.filtered$Insulin))
 
 
 # # CREATING PREDICTIVE MODELS
@@ -64,14 +64,14 @@ df.filtered <- df.main %>%
 # Study those functions from 'caTools' library
 set.seed(123)
 index = sample.split(df.filtered$Pregnancies, SplitRatio = .70)
-# print(index)
+print(index)
 
 train = subset(df.filtered, index == TRUE)
 test = subset(df.filtered, index == FALSE)
 
-# print(dim(df.filtered))
-# print(dim(train))
-# print(dim(test))
+print(dim(df.filtered))
+print(dim(train))
+print(dim(test))
 
 # # Preparing the model for training with 'caret' and 'e1071'
 # Ps.: '?caret::train'
@@ -82,9 +82,9 @@ model.1 <- train(
 )
 
 # Check Results
-# print(View(model.1))
-# print(model.1$results)
-# print(model.1$bestTune)
+print(View(model.1))
+print(model.1$results)
+print(model.1$bestTune)
 
 # 2nd Attempt - Expanded 'k'
 model.2 <- train(
@@ -93,12 +93,12 @@ model.2 <- train(
 )
 
 # Check Results
-# print(View(model.2))
-# print(model.2$results)
-# print(model.2$bestTune)
+print(View(model.2))
+print(model.2$results)
+print(model.2$bestTune)
 
 # Visualize performance - line graph
-# print(plot(model.2))
+print(plot(model.2))
 
 # 3rd Attempt - Naive Bayes
 model.3 <- train(
@@ -106,8 +106,8 @@ model.3 <- train(
 )
 
 # Check Results
-# print(model.3$results)
-# print(model.3$bestTune)
+print(model.3$results)
+print(model.3$bestTune)
 
 
 # 4th Attempt - 'randomForest'
@@ -116,10 +116,10 @@ model.4 <- train(
 )
 
 # Check Results
-# print(model.4)
+print(model.4)
 
 # Check importance of each variable in the model
-# print(varImp(model.4$finalModel))
+print(varImp(model.4$finalModel))
 
 # 5th Attempt - randomForest: removing irrelevant variables
 model.5 <- train(
@@ -127,17 +127,17 @@ model.5 <- train(
 )
 
 # Check Results
-# print(model.5)
-# print(plot(model.5$finalModel))
-# print(text(model.5$finalModel))
+print(model.5)
+print(plot(model.5$finalModel))
+print(text(model.5$finalModel))
 
 # 6th Attempt - Using 'kernlab'
 model.6 <- train(
     Outcome ~., data = train, method = 'svmRadialSigma', 
     preProcess = c('center')
 )
-# print(model.6$results)
-# print(model.6$bestTune)
+print(model.6$results)
+print(model.6$bestTune)
 
 
 # # MODEL EVALUATION
@@ -147,11 +147,11 @@ model.6 <- train(
 predictions <- predict(model.6, test)
 
 # Check Results
-# print(predictions)
+print(predictions)
 
 # Create a confusion matrix to verify the model's results
 # '?caret::confusionMatrix'
-# print(confusionMatrix(predictions, test$Outcome))
+print(confusionMatrix(predictions, test$Outcome))
 
 
 # # PERFORMING THE PREDICTIONS
@@ -181,10 +181,10 @@ print(paste('Result:', results))
 # # RESULT VISUALIZATION
 
 # Create a file with prediction results
-write.csv(predictions, 'result.csv')
+# write.csv(predictions, 'result.csv')
 
 # Read the csv file
-result.csv <- read.csv(result.csv)
+result.csv <- read.csv(file = './datasets/result.csv')
 
 # Rename column names
 names(result.csv) <- c('Index', 'Predicted Value')
