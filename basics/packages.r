@@ -5,6 +5,7 @@
 # install.packages("ggplot2")             # Graph plotting
 # install.packages("dplyr")               # handy functions
 # install.packages("tidyr")               # handy package for data structure
+# install.packages("tidyverse")           # more from tydir
 # install.packages("caTools")             # Machine Learning Library
 # install.packages("caret")               # Machine Learning Library
 # install.packages("e1071")               # Machine Learning Library
